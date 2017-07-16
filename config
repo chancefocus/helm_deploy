@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: local
+  cluster:
+    certificate-authority: /config/ca.pem
+    server: https://kubernetes.default
+users:
+- name: controllermanager
+  user:
+    client-certificate: /config/admin.pem
+    client-key: /config/admin-key.pem
+contexts:
+- context:
+    cluster: local
+    user: controllermanager
+  name: kubelet-context
+current-context: kubelet-context
